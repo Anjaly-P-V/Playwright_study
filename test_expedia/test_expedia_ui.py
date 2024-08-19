@@ -3,7 +3,7 @@ from playwright.sync_api import Playwright, sync_playwright, expect
 
 
 def run(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.chromium.launch(headless = false)
     context = browser.new_context()
     page = context.new_page()
     page.goto("https://www.expedia.co.in/")
@@ -23,4 +23,4 @@ def run(playwright: Playwright) -> None:
 
 
 with sync_playwright() as playwright:
-    run(playwright)
+   run(playwright)
