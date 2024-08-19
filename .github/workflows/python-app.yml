@@ -42,6 +42,5 @@ jobs:
       env:
         PASSWORD: ${{secrets.PASSWORD}}
       run: |
-        pip install pytest-xdist
         pytest
         
