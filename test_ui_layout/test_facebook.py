@@ -4,15 +4,22 @@ import time
 import pytest
 from playwright.sync_api import Playwright ,expect
 
-#import utils.secret_config
+
 from pom.facebook_LogIn import LogIn
+
+
+try:
+    PASSWORD = os.environ['PASSWORD']
+except KeyError:
+    import utils.secret_config
+    PASSWORD = utils.secret_config.PASSWORD
 
 
 @pytest.mark.parametrize("email", [pytest.param("fake@email.com", marks= pytest.mark.xfail),
                                             pytest.param("abcd@gmail.com", marks=pytest.mark.xfail),
                                             "anjudamayanthy@gmail.com"])
 @pytest.mark.parametrize("passwrd", [pytest.param( "asdff", marks= pytest.mark.xfail),
-                                            pytest.param( "wdvbgt" , marks=pytest.mark.xfail), os.environ['PASSWORD']])
+                                            pytest.param( "wdvbgt" , marks=pytest.mark.xfail),PASSWORD ])
 def test_fb(set_up, email, passwrd):
     page = set_up
     page.goto("https://www.facebook.com/")
